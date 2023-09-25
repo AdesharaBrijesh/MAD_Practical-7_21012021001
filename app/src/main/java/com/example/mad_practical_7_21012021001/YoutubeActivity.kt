@@ -18,11 +18,13 @@ class YoutubeActivity : AppCompatActivity() {
             Intent(this@YoutubeActivity, MainActivity::class.java).also { startActivity(it) }
         }
 
-        val youtubeId = "watch?v=jk6thMe6Vq8"
-        val webSettings: WebSettings =
-        webSettings.javaScriptEnabled = true
-        webSettings.loadWithOverviewMode = true
-        webSettings.useWideViewPort = true
-            .loadUrl("https://www.youtube.com/$youtubeId")
+          val myWebView = findViewById<WebView>(R.id.myweb1)
+
+        val settings = myWebView.settings
+        settings.javaScriptEnabled= true
+        settings.loadWithOverviewMode = true
+        settings.useWideViewPort = true
+
+        myWebView.loadUrl("https://www.youtube.com/embed/$youtubeID")
     }
 }

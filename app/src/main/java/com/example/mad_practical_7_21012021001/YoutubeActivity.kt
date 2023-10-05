@@ -3,7 +3,6 @@ package com.example.mad_practical_7_21012021001
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Website
 import android.webkit.WebSettings
 import android.webkit.WebView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -13,18 +12,21 @@ class YoutubeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube)
 
-        val changeActivity: FloatingActionButton = findViewById(R.id.changeactivity)
-        changeActivity.setOnClickListener {
-            Intent(this@YoutubeActivity, MainActivity::class.java).also { startActivity(it) }
+        val youtubeId = "fJn9B64Znrk"
+        val youtubeWebView: WebView = findViewById(R.id.webView)
+        val webSettings: WebSettings = youtubeWebView.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.loadWithOverviewMode = true
+        webSettings.useWideViewPort = true
+        youtubeWebView.loadUrl("https://www.youtube.com/embed/$youtubeId")
+
+        val changeButton: FloatingActionButton = findViewById(R.id.floatingActionButton2)
+
+
+
+        changeButton.setOnClickListener {
+            val intent = Intent(this@YoutubeActivity, MainActivity::class.java)
+            startActivity(intent)
         }
-
-        val myWebView = findViewById<WebView>(R.id.webView)
-        val youtubeID = "watch?v=QtCgSdYVj0Q&ab_channel=TechnicalGuruji"
-        val settings = myWebView.settings
-        settings.javaScriptEnabled= true
-        settings.loadWithOverviewMode = true
-        settings.useWideViewPort = true
-
-        myWebView.loadUrl("https://www.youtube.com/$youtubeID")
     }
 }
